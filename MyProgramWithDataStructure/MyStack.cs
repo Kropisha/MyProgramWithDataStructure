@@ -1,63 +1,62 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyProgramWithDataStructure
+﻿namespace MyProgramWithDataStructure
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
     class MyStack<T>
     {
-        T[] stck; //array with stack
+        T[] stck; // array with stack
         int tos; // index of top value
-        int size=10;
+        int size = 10;
 
         public MyStack()
         {
-            stck = new T[size]; //memory for stack
-            tos = 0;
+            this.stck = new T[this.size]; // memory for stack
+            this.tos = 0;
         }
 
         public MyStack(int length)
         {
-            stck = new T[length]; //memory for stack
-            tos = 0;
+            this.stck = new T[length]; // memory for stack
+            this.tos = 0;
         }
 
         public void Push(T ch)
         {
-            if (tos == stck.Length)
+            if (this.tos == this.stck.Length)
             {
                 Console.WriteLine("The stack is full.");
                 return;
             }
-            stck[tos] = ch;
-            tos++;
+            this.stck[this.tos] = ch;
+            this.tos++;
         }
 
         public T Pop()
         {
-            if (tos == 0)
+            if (this.tos == 0)
             {
                 Console.WriteLine("The stack is empty.");
             }
-            tos--;
-            return stck[tos];
+            this.tos--;
+            return this.stck[this.tos];
         }
 
-        public bool isFull()
+        public bool IsFull()
         {
-            return tos == stck.Length;
+            return this.tos == this.stck.Length;
         }
 
-        public bool isEmpty()
+        public bool IsEmpty()
         {
-            return tos == 0;
+            return this.tos == 0;
         }
 
         public int Capacity()
         {
-            return stck.Length;
+            return this.stck.Length;
         }
     }
 }

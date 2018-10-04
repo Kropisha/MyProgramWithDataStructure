@@ -1,16 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyProgramWithDataStructure
+﻿namespace MyProgramWithDataStructure
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
     class Node<T>
     {
         public Node(T data)
         {
-            Data = data;
+            this.Data = data;
         }
 
         public T Data { get; set; }
@@ -18,42 +17,16 @@ namespace MyProgramWithDataStructure
     }
     class MyQueue<T>
     {
-        Node<T> head; //first value
-        Node<T> tail; //last value
+        Node<T> head; // first value
+        Node<T> tail; // last value
         int count;
-
-        public void Enqueue(T data)
-        {
-            Node<T> node = new Node<T>(data);
-            Node<T> tempNode = tail;
-            tail = node;
-
-            if (count == 0)
-            {
-                head = tail;
-            }
-            else tempNode.Next = tail;
-            count++;
-        }
-
-        public T Dequeue()
-        {
-            if (count == 0)
-            {
-                Console.WriteLine("The queue is empty.");
-            }
-            T output = head.Data;
-            head = head.Next;
-            count--;
-            return output;
-        }
 
         public T First
         {
             get
             {
-                if(isEmpty) Console.WriteLine("The queue is empty.");
-                return head.Data;
+                if (this.IsEmpty) Console.WriteLine("The queue is empty.");
+                return this.head.Data;
             }
         }
 
@@ -61,30 +34,58 @@ namespace MyProgramWithDataStructure
         {
             get
             {
-                if (isEmpty) Console.WriteLine("The queue is empty.");
-                return tail.Data;
+                if (this.IsEmpty) Console.WriteLine("The queue is empty.");
+                return this.tail.Data;
             }
         }
 
-        public int Count { get { return count; } }
-        public bool isEmpty { get { return count == 0; } }
+        public int Count { get { return this.count; } }
+        public bool IsEmpty { get { return this.count == 0; } }
 
-        public void Clear()
+        public void Enqueue(T data)
         {
-            head = null;
-            tail = null;
-            count = 0;
+            Node<T> node = new Node<T>(data);
+            Node<T> tempNode = this.tail;
+            this.tail = node;
+
+            if (this.count == 0)
+            {
+                this.head = this.tail;
+            }
+            else tempNode.Next = this.tail;
+            this.count++;
         }
 
-        public bool Contains(T Data)
+        public T Dequeue()
         {
-            Node<T> current = head;
+            if (this.count == 0)
+            {
+                Console.WriteLine("The queue is empty.");
+            }
+            T output = this.head.Data;
+            this.head = this.head.Next;
+            this.count--;
+            return output;
+        }
+
+        
+        public void Clear()
+        {
+            this.head = null;
+            this.tail = null;
+            this.count = 0;
+        }
+
+        public bool Contains(T data)
+        {
+            Node<T> current = this.head;
             while (current != null)
             {
-                if (current.Data.Equals(Data))
+                if (current.Data.Equals(data))
                     return true;
                 current = current.Next;
-            } return false;
+            }
+            return false;
             }
         }
     }

@@ -1,30 +1,32 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyProgramWithDataStructure
+﻿namespace MyProgramWithDataStructure
 {
-    class MyLinkedList<T>:IEnumerable<T>
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    class MyLinkedList<T> : IEnumerable<T>
     {
         Node<T> head;
         Node<T> tail;
         int count;
 
+        public int Count { get { return this.count; } }
+        public bool IsEmpty { get { return this.count == 0; } }
+
         public void Add(T data)
         {
             Node<T> node = new Node<T>(data);
-            if (head == null) head = node;
-            else tail.Next = node;
-            tail = node;
-            count++;
+            if (this.head == null) this.head = node;
+            else this.tail.Next = node;
+            this.tail = node;
+            this.count++;
         }
 
         public bool Remove(T data)
         {
-            Node<T> current = head;
+            Node<T> current = this.head;
             Node<T> previous = null;
 
             while (current != null)
@@ -34,15 +36,15 @@ namespace MyProgramWithDataStructure
                     if (previous != null)
                     {
                         previous.Next = current.Next;
-                        if (current.Next == null) tail = previous;
+                        if (current.Next == null) this.tail = previous;
                     }
                     else
                     {
-                        head = head.Next;
+                        this.head = this.head.Next;
 
-                        if (head == null) tail = null;
+                        if (this.head == null) this.tail = null;
                     }
-                    count--;
+                    this.count--;
                     return true;
                 }
                 previous = current;
@@ -51,19 +53,18 @@ namespace MyProgramWithDataStructure
             return false;
         }
 
-        public int Count { get { return count; } }
-        public bool IsEmpty { get { return count == 0; } }
+       
 
         public void Clear()
         {
-            head = null;
-            tail = null;
-            count = 0;
+            this.head = null;
+            this.tail = null;
+            this.count = 0;
         }
 
         public bool Contains(T data)
         {
-            Node<T> current = head;
+            Node<T> current = this.head;
             while (current != null)
             {
                 if (current.Data.Equals(data))
@@ -76,16 +77,16 @@ namespace MyProgramWithDataStructure
         public void AppendFirst(T data)
         {
             Node<T> node = new Node<T>(data);
-            node.Next = head;
-            head = node;
-            if (count == 0)
-                tail = head;
-            count++;
+            node.Next = this.head;
+            this.head = node;
+            if (this.count == 0)
+                this.tail = this.head;
+            this.count++;
         }
 
         public IEnumerator<T> GetEnumerator()
         {
-            Node<T> current = head;
+            Node<T> current = this.head;
             while (current != null)
             {
                 yield return current.Data;

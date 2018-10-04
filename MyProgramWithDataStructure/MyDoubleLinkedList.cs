@@ -1,59 +1,61 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyProgramWithDataStructure
+﻿namespace MyProgramWithDataStructure
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
     public class DoubleNode<T>
     {
         public DoubleNode(T data)
         {
-            Data = data;
+            this.Data = data;
         }
         public T Data { get; set; }
         public DoubleNode<T> Previous { get; set; }
         public DoubleNode<T> Next { get; set; }
     }
 
-    class MyDoubleLinkedList<T>:IEnumerable<T>
+   public class MyDoubleLinkedList<T> : IEnumerable<T>
     {
         DoubleNode<T> head;
         DoubleNode<T> tail;
         int count;
 
+        public int Count { get { return this.count; } }
+        public bool IsEmpty { get { return this.count == 0; } }
+
         public void Add(T data)
         {
             DoubleNode<T> node = new DoubleNode<T>(data);
-            if (head == null) head = node;
+            if (this.head == null) this.head = node;
             else
             {
-                tail.Next = node;
-                node.Previous = tail;
+                this.tail.Next = node;
+                node.Previous = this.tail;
             }
-            tail = node;
-            count++;
+            this.tail = node;
+            this.count++;
         }
 
         public void AddFirst(T data)
         {
             DoubleNode<T> node = new DoubleNode<T>(data);
-            DoubleNode<T> temp = head;
+            DoubleNode<T> temp = this.head;
             node.Next = temp;
-            head = node;
-            if (count == 0)
+            this.head = node;
+            if (this.count == 0)
             {
-                tail = head;
+                this.tail = this.head;
             }
             else temp.Previous = node;
-            count++;
+            this.count++;
         }
 
         public bool Remove(T data)
         {
-            DoubleNode<T> current = head;
+            DoubleNode<T> current = this.head;
             while (current != null)
             {
                 if (current.Data.Equals(data))
@@ -70,7 +72,7 @@ namespace MyProgramWithDataStructure
                 }
                 else
                 {
-                    tail = current.Previous;
+                    this.tail = current.Previous;
                 }
                 if (current.Previous != null)
                 {
@@ -78,27 +80,24 @@ namespace MyProgramWithDataStructure
                 }
                 else
                 {
-                    head = current.Next;
+                    this.head = current.Next;
                 }
-                count--;
+                this.count--;
                 return true;
             }
             return false;
         }
 
-        public int Count { get { return count; } }
-        public bool IsEmpty { get { return count == 0; } }
-
         public void Clear()
         {
-            head = null;
-            tail = null;
-            count = 0;
+            this.head = null;
+            this.tail = null;
+            this.count = 0;
         }
 
         public bool Contains(T data)
         {
-            DoubleNode<T> current = head;
+            DoubleNode<T> current = this.head;
             while (current != null)
             {
                 if (current.Data.Equals(data))
@@ -110,7 +109,7 @@ namespace MyProgramWithDataStructure
 
         public IEnumerator<T> GetEnumerator()
         {
-            DoubleNode<T> current = head;
+            DoubleNode<T> current = this.head;
             while (current != null)
             {
                 yield return current.Data;
@@ -125,7 +124,7 @@ namespace MyProgramWithDataStructure
 
         public IEnumerable<T> BackEnumerator()
         {
-            DoubleNode<T> current = tail;
+            DoubleNode<T> current = this.tail;
             while (current != null)
             {
                 yield return current.Data;

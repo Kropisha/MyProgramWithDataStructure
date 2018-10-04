@@ -1,27 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MyProgramWithDataStructure
+﻿namespace MyProgramWithDataStructure
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
     class Program
     {
-        //Menu
+        // Menu
         static void Main(string[] args)
         {
             bool fExit = false;
-            const string border = "=============================";
+            const string Border = "=============================";
             int num = 0;
 
             do
             {
                 try
                 {
-                    //Console.Clear();
+                    // Console.Clear();
                     Console.BackgroundColor = ConsoleColor.Black;
-                    Console.WriteLine(border + "Welcome to my program!" + border);
+                    Console.WriteLine(Border + "Welcome to my program!" + Border);
                     Console.WriteLine("To play with some data structure press the number.");
                     Console.WriteLine("1. Stack");
                     Console.WriteLine("2. Queue");
